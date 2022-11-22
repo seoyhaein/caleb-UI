@@ -18,6 +18,24 @@ namespace caleb_UI
     public abstract class BaseConnection : Shape
     {
         /// <summary>
+        /// Gets or sets the start point of this connection.
+        /// </summary>
+        public Point Source
+        {
+            get => (Point)GetValue(SourceProperty);
+            set => SetValue(SourceProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the end point of this connection.
+        /// </summary>
+        public Point Target
+        {
+            get => (Point)GetValue(TargetProperty);
+            set => SetValue(TargetProperty, value);
+        }
+
+        /// <summary>
         /// Gets a vector that has its coordinates set to 0.
         /// </summary>
         protected static readonly Vector ZeroVector = new Vector(0d, 0d);
@@ -63,6 +81,25 @@ namespace caleb_UI
             }
 
             return _geometry;
+        }
+
+        /// <summary>
+        /// Gets the resulting offset after applying the <see cref="OffsetMode"/>.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual (Vector SourceOffset, Vector TargetOffset) GetOffset()
+        {
+            Vector delta = Target - Source;
+            Vector delta2 = Source - Target;
+
+            return OffsetMode switch
+            {
+                ConnectionOffsetMode.Rectangle => (GetRectangleModeOffset(delta, SourceOffset), GetRectangleModeOffset(delta2, TargetOffset)),
+                ConnectionOffsetMode.Circle => (GetCircleModeOffset(delta, SourceOffset), GetCircleModeOffset(delta2, TargetOffset)),
+                ConnectionOffsetMode.Edge => (GetEdgeModeOffset(delta, SourceOffset), GetEdgeModeOffset(delta2, TargetOffset)),
+                ConnectionOffsetMode.None => (ZeroVector, ZeroVector),
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
     }
 }
