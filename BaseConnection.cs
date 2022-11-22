@@ -14,6 +14,37 @@ namespace caleb_UI
     // http://reference.avaloniaui.net/api/Avalonia/Vector/
     // http://reference.avaloniaui.net/api/Avalonia.Media/StreamGeometry/
 
+    // TODO
+    // https://stackoverflow.com/questions/66386895/avaloniaui-capture-mouse-button-up-down-globally
+    // mouse button down and up event 
+    // shape 에서 특정 컨트롤에 해당 이벤트를 넣고 이것을 처리하는 방식을 간단히 테스트 해본다.
+
+    /// <summary>
+    /// Specifies the offset type that can be applied to a <see cref="BaseConnection"/> using the <see cref="BaseConnection.SourceOffset"/> and the <see cref="BaseConnection.TargetOffset"/> values.
+    /// </summary>
+    public enum ConnectionOffsetMode
+    {
+        /// <summary>
+        /// No offset applied.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// The offset is applied in a circle around the point.
+        /// </summary>
+        Circle,
+
+        /// <summary>
+        /// The offset is applied in a rectangle shape around the point.
+        /// </summary>
+        Rectangle,
+
+        /// <summary>
+        /// The offset is applied in a rectangle shape around the point, perpendicular to the edges.
+        /// </summary>
+        Edge,
+    }
+
 
     public abstract class BaseConnection : Shape
     {
@@ -33,6 +64,16 @@ namespace caleb_UI
         {
             get => (Point)GetValue(TargetProperty);
             set => SetValue(TargetProperty, value);
+        }
+
+
+        /// <summary>
+        /// Gets or sets the <see cref="ConnectionOffsetMode"/> to apply when drawing the connection.
+        /// </summary>
+        public ConnectionOffsetMode OffsetMode
+        {
+            get => (ConnectionOffsetMode)GetValue(OffsetModeProperty);
+            set => SetValue(OffsetModeProperty, value);
         }
 
         /// <summary>
