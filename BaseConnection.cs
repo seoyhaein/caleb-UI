@@ -16,8 +16,13 @@ namespace caleb_UI
 
     // TODO
     // https://stackoverflow.com/questions/66386895/avaloniaui-capture-mouse-button-up-down-globally
+
     // mouse button down and up event 
     // shape 에서 특정 컨트롤에 해당 이벤트를 넣고 이것을 처리하는 방식을 간단히 테스트 해본다.
+
+    // https://www.youtube.com/watch?v=x1z5zbUgP90
+
+    // https://marketplace.visualstudio.com/items?itemName=AvaloniaTeam.AvaloniaVS&ssr=false#qna
 
     /// <summary>
     /// Specifies the offset type that can be applied to a <see cref="BaseConnection"/> using the <see cref="BaseConnection.SourceOffset"/> and the <see cref="BaseConnection.TargetOffset"/> values.
