@@ -70,5 +70,8 @@ void Run() {
 
 ```
 
+참고해서 테스트 하고, 추후 테스트 파일 작성해서 테스트 하는 방식으로 진행한다.
+https://icodebroker.tistory.com/9474#recentComments
+
 
 
