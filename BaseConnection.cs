@@ -24,6 +24,10 @@ namespace caleb_UI
 
     // https://marketplace.visualstudio.com/items?itemName=AvaloniaTeam.AvaloniaVS&ssr=false#qna
 
+
+    // dotnet 에서 interface
+    // https://holjjack.tistory.com/31
+
     /// <summary>
     /// Specifies the offset type that can be applied to a <see cref="BaseConnection"/> using the <see cref="BaseConnection.SourceOffset"/> and the <see cref="BaseConnection.TargetOffset"/> values.
     /// </summary>
