@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using System;
 
-namespace caleb_UI
+namespace calebUI
 {
     internal class Program
     {

@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace caleb_UI
+namespace calebUI
 {
     // https://docs.avaloniaui.net/misc/wpf/uielement-frameworkelement-and-control
     // http://reference.avaloniaui.net/api/Avalonia/Vector/
@@ -100,7 +100,7 @@ namespace caleb_UI
     }
 
 
-    public abstract class BaseConnection : Shape
+    public class BaseConnection : Shape
     { 
         #region Dependency Properties
         // 일단, StyledProperty 로 진행하고 추후에 DirectProperty 를 살펴보자.
