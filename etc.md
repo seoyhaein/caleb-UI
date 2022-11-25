@@ -108,3 +108,5 @@ https://kaki104.tistory.com/473
 avaloniaUI 에서도 구현 되었음을 확인함.
 https://github.com/AvaloniaUI/Avalonia/issues/7432
 
+[중요!!]event handler 부분 차이점을 파악하고 해결해야함.
+

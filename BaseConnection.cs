@@ -98,6 +98,11 @@ namespace CalebUI
         /// </summary>
         None
     }
+    // 이벤트 처리하고 테스트 진행하자.
+    // https://docs.avaloniaui.net/docs/input/routed-events
+
+    // invoke
+    // https://codeblog.jonskeet.uk/2015/01/30/clean-event-handlers-invocation-with-c-6/
 
     public class BaseConnection : Shape
     { 
