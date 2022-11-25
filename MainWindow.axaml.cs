@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace calebUI
+namespace CalebUI
 {
     public partial class MainWindow : Window
     {

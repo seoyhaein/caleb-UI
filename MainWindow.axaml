@@ -4,8 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="calebUI.MainWindow"
+        x:Class="CalebUI.MainWindow"
         Title="CalebUI">
-    Welcome to Avalonia!
-	<local:CustomShape />
+	<Border
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            BorderThickness="1"
+            BorderBrush="DarkGray">
+		<local:CustomShape
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			StrokeThickness="10"
+			Stroke="Orange" />
+	</Border>
 </Window>
