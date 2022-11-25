@@ -294,11 +294,11 @@ namespace CalebUI
         protected static readonly Vector ZeroVector = new Vector(0d, 0d);
 
         // TODO 상세하게 살펴보자.
-        private readonly StreamGeometry _geometry = new StreamGeometry
-        {
-            //FillRule = FillRule.EvenOdd
-        };
-
+        // Sets path's winding rule (default is EvenOdd). You should call this method before any calls to BeginFigure.
+        // If you wonder why, ask Direct2D guys about their design decisions.
+        // SetFillRule(FillRule)
+        private readonly StreamGeometry _geometry = new StreamGeometry();
+       
         // geometry 설정하기.
 
         protected override Geometry CreateDefiningGeometry()

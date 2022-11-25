@@ -89,5 +89,22 @@ https://sourcegraph.com/github.com/AvaloniaUI/Avalonia/-/blob/samples/MobileSand
 
 nodify 로도 테스트 해보자.
 
+해당 문제 해결
+Unable to find a setter that allows multiple assignments to the property Content of type Avalonia.Controls:Avalonia.Controls.ContentControl 
 
+-> that one says you are putting too many children in a control that can only have one
+
+
+WPF 에서 아래 코드 대응 되는 avaloniaUI 찾기.
+[TemplatePart(Name = ElementConnector, Type = typeof(FrameworkElement))]
+
+일단 먼저, WPf 에서 TemplatePart 부분
+https://learn.microsoft.com/ko-kr/dotnet/desktop/wpf/controls/creating-a-control-that-has-a-customizable-appearance?view=netframeworkdesktop-4.8
+
+https://kaki104.tistory.com/473
+
+대략적으로 빠르게 이해했음.
+
+avaloniaUI 에서도 구현 되었음을 확인함.
+https://github.com/AvaloniaUI/Avalonia/issues/7432
 
