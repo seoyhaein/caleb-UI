@@ -74,4 +74,20 @@ void Run() {
 https://icodebroker.tistory.com/9474#recentComments
 
 
+### TODO
+```
+ xmlns:local="clr-namespace:calebUI"
+
+<local:BaseConnection/>
+```
+axaml 에 적용할때 문제가 발생한다.
+class 문제인지 아니면 잘못처리해서 하는지 파악해야 한다.
+
+-> avalonia sample 참고하자. 구글링이 안되어서 일단 이건 추후에 진행한다.
+
+https://sourcegraph.com/github.com/AvaloniaUI/Avalonia/-/blob/samples/MobileSandbox/MainWindow.xaml?L11
+
+nodify 로도 테스트 해보자.
+
+
 

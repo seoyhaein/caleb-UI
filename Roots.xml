@@ -1,5 +1,5 @@
 ﻿<linker>
   <!-- Can be removed if CompiledBinding and no reflection are used -->
-  <assembly fullname="calebUI" preserve="All" />
+  <assembly fullname="CalebUI" preserve="All" />
   <assembly fullname="Avalonia.Themes.Fluent" preserve="All" />
 </linker>

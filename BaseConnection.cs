@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace calebUI
+namespace CalebUI
 {
     // https://docs.avaloniaui.net/misc/wpf/uielement-frameworkelement-and-control
     // http://reference.avaloniaui.net/api/Avalonia/Vector/
