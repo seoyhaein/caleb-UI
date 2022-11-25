@@ -241,16 +241,32 @@ namespace CalebUI
 
             return (source, target);
         }
-
+        // https://learn.microsoft.com/ko-kr/dotnet/desktop/wpf/graphics-multimedia/how-to-create-a-shape-using-a-streamgeometry?view=netframeworkdesktop-4.8
         protected virtual void DrawArrowGeometry(StreamGeometryContext context, Point source, Point target, ConnectionDirection arrowDirection = ConnectionDirection.Forward)
         {
             (Point from, Point to) = GetArrowHeadPoints(source, target, arrowDirection);
 
 
             // avalonia 에서 찾아보자. 위에랑 비교하고 nodify 랑 비교해야함.
-            context.BeginFigure(target, true);
+            // WPF 에서도 테스트 해보자.
+
+            // Begin the triangle at the point specified. Notice that the shape is set to
+            // be closed so only two lines need to be specified below to make the triangle.
+            context.BeginFigure(new Point(10, 100), false /* is filled */);
+
+            // Draw a line to the next specified point.
+            context.LineTo(new Point(100, 100));
+
+            // Draw another line to the next specified point.
+            context.LineTo(new Point(100, 50));
+
+            //context.BeginFigure(new Point(50.0, 50.0), true);
+            //context.LineTo(new Point(100, 50));
+            //context.LineTo(new Point(100, 70));
+
+            /*context.BeginFigure(target, true);
             context.LineTo(from);
-            context.LineTo(to);
+            context.LineTo(to);*/
         }
 
         protected virtual (Point From, Point To) GetArrowHeadPoints(Point source, Point target, ConnectionDirection arrowDirection)
