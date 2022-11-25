@@ -99,7 +99,6 @@ namespace CalebUI
         None
     }
 
-
     public class BaseConnection : Shape
     { 
         #region Dependency Properties
@@ -293,13 +292,17 @@ namespace CalebUI
         /// </summary>
         protected static readonly Vector ZeroVector = new Vector(0d, 0d);
 
-        // TODO 상세하게 살펴보자.
         // Sets path's winding rule (default is EvenOdd). You should call this method before any calls to BeginFigure.
         // If you wonder why, ask Direct2D guys about their design decisions.
         // SetFillRule(FillRule)
+        // http://reference.avaloniaui.net/api/Avalonia.Media/StreamGeometryContext/ECFC70B4
+
         private readonly StreamGeometry _geometry = new StreamGeometry();
-       
-        // geometry 설정하기.
+
+        /// <summary>
+        /// geometry 설정하기, 테스트 필요.
+        /// </summary>
+        /// <returns>Geometry</returns>
 
         protected override Geometry CreateDefiningGeometry()
         {
