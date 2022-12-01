@@ -105,7 +105,7 @@ namespace CalebUI
     // https://codeblog.jonskeet.uk/2015/01/30/clean-event-handlers-invocation-with-c-6/
 
     public class BaseConnection : Shape
-    { 
+    {
         #region Dependency Properties
         // 일단, StyledProperty 로 진행하고 추후에 DirectProperty 를 살펴보자.
 
@@ -118,12 +118,12 @@ namespace CalebUI
         //public static readonly DependencyProperty ArrowHeadEndsProperty = DependencyProperty.Register(nameof(ArrowEnds), typeof(ArrowHeadEnds), typeof(BaseConnection), new FrameworkPropertyMetadata(ArrowHeadEnds.End, FrameworkPropertyMetadataOptions.AffectsRender));
         //public static readonly DependencyProperty SpacingProperty = DependencyProperty.Register(nameof(Spacing), typeof(double), typeof(BaseConnection), new FrameworkPropertyMetadata(BoxValue.Double0, FrameworkPropertyMetadataOptions.AffectsRender));
         //public static readonly DependencyProperty ArrowSizeProperty = DependencyProperty.Register(nameof(ArrowSize), typeof(Size), typeof(BaseConnection), new FrameworkPropertyMetadata(BoxValue.ArrowSize, FrameworkPropertyMetadataOptions.AffectsRender));
-        
+
         // 아래 두개는 일단 확인하자.
         //public static readonly DependencyProperty SplitCommandProperty = DependencyProperty.Register(nameof(SplitCommand), typeof(ICommand), typeof(BaseConnection));
         //public static readonly DependencyProperty DisconnectCommandProperty = Connector.DisconnectCommandProperty.AddOwner(typeof(BaseConnection));
 
-
+        // RegisterAttached 상세히 살펴보기.
         /// <summary>
         /// Defines the <see cref="SourceProperty"/> property.
         /// </summary>
