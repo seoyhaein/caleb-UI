@@ -122,6 +122,9 @@ Avalonia 에서는 EndFigure 별도의 메스드를 사용하여 해당 입력 �
 
 결론은, WPF 와 동일하게 구현할 수 있다.
 
+참고:
+https://learn.microsoft.com/ko-kr/dotnet/api/system.windows.media.arcsegment?view=windowsdesktop-7.0
+
 
 
 
