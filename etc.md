@@ -126,5 +126,9 @@ Avalonia 에서는 EndFigure 별도의 메스드를 사용하여 해당 입력 �
 https://learn.microsoft.com/ko-kr/dotnet/api/system.windows.media.arcsegment?view=windowsdesktop-7.0
 
 
+### 정적 생성자
+https://developer-talk.tistory.com/449
+
+
 
 
