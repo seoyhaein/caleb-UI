@@ -110,3 +110,18 @@ https://github.com/AvaloniaUI/Avalonia/issues/7432
 
 [중요!!]event handler 부분 차이점을 파악하고 해결해야함.
 
+### WPF / Avalonia
+BeginFigure 에서 isClosed 파라미터의 경우
+WPF 에서는 마지막 파라미터로 사용하여 해당 세그멘트가 closed 인지 아닌지 판단하지만
+
+Avalonia 에서는 EndFigure 별도의 메스드를 사용하여 해당 입력 파라미터로 동일하게 closed 인지 아닌지 판단한다.
+
+또한, IsStorke 의 경우, Avalonia 에서는 해당 파라미터가 존재하지 않으나 별도로 상속된 stroke 를 설정하면 간단히 동일한 rendering 을 해준다.
+즉, WPF 에서  isStroke 를 false 로 설정하면 stroke 를 설정하더라도 렌더링이 안되어서 추가적으로 isStroke 를 설정해줘야 하지만 avalonia 에서는 이것을 생략해서
+좀더 간단하게 구현하였다. 하지만, 깊이 있게 분석한 것이 아니라서, 내부적인 랜더링 방식에 대해서는 의문이다.
+
+결론은, WPF 와 동일하게 구현할 수 있다.
+
+
+
+
