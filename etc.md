@@ -130,5 +130,44 @@ https://learn.microsoft.com/ko-kr/dotnet/api/system.windows.media.arcsegment?vie
 https://developer-talk.tistory.com/449
 
 
+### avalonia style
+
+avalonia 의 style 은 wpf 다른 방식을적용한 것이 있다. CSS 스타일로 Control 의 스타일을 적용할 수 있도록 하게 한다.
+
+아래 예저를 살펴보면,
+
+```
+<StackPanel>
+		<StackPanel.Styles>
+			<Style Selector="Border:pointerover">
+				<Setter Property="Background" Value="Red"/>
+			</Style>
+		</StackPanel.Styles>
+		<Border x:Name="tester">
+			<TextBlock>I will have red background when hovered.</TextBlock>
+		</Border>
+</StackPanel>
+```
+
+StackPanel Styles 에서 Border pseudoclass  를 사용하였다.
+pseudoclass 는 대략적으로 여기서 -> https://docs.avaloniaui.net/docs/styling/styles  참고 하면 됨.
+
+Avalonia 소스에서 살펴보면 Border 에 아래와 같은 구문이 있는 것을 확인 할 수 있다.
+
+PseudoClasses.Set(":pointerover", isPointerOver.Value);
+
+위 코드는 pseudoclass 를 등록해 줄 수 있는 코드 이다.
+
+추가적인 설명을 하자면, Avalonia.Controls 에서 Border.cs 를 살펴보면
+
+Border <- Decorator <- Control <- InputElement 으로 상속을 하게 되는데 InputElement 에서 PseudoClasses.Set(":pointerover", isPointerOver.Value); 를 구현하고 있다.
+
+다음으로, 보충해서 아래 stackoverflow 글을 보면 좀더 깊이 이해할 수 있을 것이다.
+
+https://stackoverflow.com/questions/66442508/avaloniaui-styles-pseudoclasses
+
+
+
+
 
 
