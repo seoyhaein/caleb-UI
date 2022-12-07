@@ -241,6 +241,31 @@ WPF 에 없는 Style 과 연동해서 하는 패턴을 파악한다.
     </UserControl.Styles>
 ```
 
+테스트 필요
+```
+<Window.Styles>
+		<Style Selector="Ellipse#backgroundElement:pointerover">
+			<Setter Property="Fill" Value="Red" />
+		</Style>
+		<!--버그 있음. 좀더 조사가 필요함. 
+		C:\Users\seoy\source\repos\seoyhaein\Avalonia\samples\ControlCatalog\Pages\TransitioningContentControlPage.axaml
+		위의 파일과 비교해보자.
+		-->
+		<Style Selector="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Grid>
+							<Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding Foreground}" />
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Styles>
+```
+
 -> 
 ControlTemplate 과 TargetType 의 경우는 WPF 와 동일하다.
 
