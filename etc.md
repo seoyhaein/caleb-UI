@@ -1,6 +1,6 @@
 ﻿# 자료 정리 중.
 
-### ? 에 대해서
+#### ? 에 대해서
 ```
 C# 코드에서 가끔 물음표 두개(??)를 볼 수 있다. 기본적으로 물음표 한개(?) 는 Nullable을 뜻 한다. 그러니까 이 값이 null 일 수도 있다는 것을 명시해준다.
 
@@ -24,7 +24,7 @@ string name = param != null ? param : "default";
 
 ```
 
-### generic 에 대해서
+#### generic 에 대해서
 ```
 C# 코드에서 가끔 물음표 두개(??)를 볼 수 있다. 기본적으로 물음표 한개(?) 는 Nullable을 뜻 한다. 그러니까 이 값이 null 일 수도 있다는 것을 명시해준다.
 
@@ -48,7 +48,7 @@ string name = param != null ? param : "default";
 
 ```
 
-### nameof 
+#### nameof 
 
 ```
 C# 6.0의 nameof 연산자는 Type이나 메서드, 속성 등의 이름을 리턴하는 것으로 이러한 명칭들을 하드코딩하지 않게 하는 잇점이 있다. 
@@ -74,43 +74,7 @@ void Run() {
 https://icodebroker.tistory.com/9474#recentComments
 
 
-### TODO
-```
- xmlns:local="clr-namespace:calebUI"
-
-<local:BaseConnection/>
-```
-axaml 에 적용할때 문제가 발생한다.
-class 문제인지 아니면 잘못처리해서 하는지 파악해야 한다.
-
--> avalonia sample 참고하자. 구글링이 안되어서 일단 이건 추후에 진행한다.
-
-https://sourcegraph.com/github.com/AvaloniaUI/Avalonia/-/blob/samples/MobileSandbox/MainWindow.xaml?L11
-
-nodify 로도 테스트 해보자.
-
-해당 문제 해결
-Unable to find a setter that allows multiple assignments to the property Content of type Avalonia.Controls:Avalonia.Controls.ContentControl 
-
--> that one says you are putting too many children in a control that can only have one
-
-
-WPF 에서 아래 코드 대응 되는 avaloniaUI 찾기.
-[TemplatePart(Name = ElementConnector, Type = typeof(FrameworkElement))]
-
-일단 먼저, WPf 에서 TemplatePart 부분
-https://learn.microsoft.com/ko-kr/dotnet/desktop/wpf/controls/creating-a-control-that-has-a-customizable-appearance?view=netframeworkdesktop-4.8
-
-https://kaki104.tistory.com/473
-
-대략적으로 빠르게 이해했음.
-
-avaloniaUI 에서도 구현 되었음을 확인함.
-https://github.com/AvaloniaUI/Avalonia/issues/7432
-
-[중요!!]event handler 부분 차이점을 파악하고 해결해야함.
-
-### WPF / Avalonia
+#### Geometry
 BeginFigure 에서 isClosed 파라미터의 경우
 WPF 에서는 마지막 파라미터로 사용하여 해당 세그멘트가 closed 인지 아닌지 판단하지만
 
@@ -131,6 +95,46 @@ https://developer-talk.tistory.com/449
 
 
 ### avalonia style
+
+#### Style Classes
+
+Classes 는 Avalonia.Base 에서 Controls 에 있는 Classes.cs 에 있다.
+
+TODO -> IStyledElement interface 살펴보기.
+
+이건 디버깅 해서 찾아내야 하는데 cs 코드를 아직 찾지 못함. 관련 문서도 없다. 젠장.
+
+```
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="AvaloniaCTTester.MainWindow"
+		Height="450" Width="800"
+        Title="AvaloniaCTTester">
+	<Window.Styles>
+		<Style Selector="TextBlock.h10">
+			<Setter Property="FontSize" Value="25"/>
+		</Style>
+	</Window.Styles>
+	<StackPanel>
+		<StackPanel.Styles>
+			<Style Selector="Border:pointerover">
+				<Setter Property="Background" Value="Red"/>
+			</Style>
+		</StackPanel.Styles>
+		<Border x:Name="tester">
+			<TextBlock>I will have red background when hovered.</TextBlock>
+		</Border>
+		<TextBlock Classes="h10">A control into which the user can input text</TextBlock>
+	</StackPanel>
+</Window>
+```
+
+위의 코드에서 일단 selector 로 지정해서 적용을 했는데 세부적인 것은 더 찾아봐야 한다.
+
+#### Pseudoclasses
 
 avalonia 의 style 은 wpf 다른 방식을적용한 것이 있다. CSS 스타일로 Control 의 스타일을 적용할 수 있도록 하게 한다.
 
@@ -165,6 +169,121 @@ Border <- Decorator <- Control <- InputElement 으로 상속을 하게 되는데
 다음으로, 보충해서 아래 stackoverflow 글을 보면 좀더 깊이 이해할 수 있을 것이다.
 
 https://stackoverflow.com/questions/66442508/avaloniaui-styles-pseudoclasses
+
+example 1
+
+```
+	<Window.Styles>
+		<Style Selector="Ellipse#backgroundElement:pointerover">
+			<Setter Property="Fill" Value="Red" />
+		</Style>
+	</Window.Styles>
+	<Window.Resources>
+		<ControlTemplate x:Key="roundbutton" TargetType="Button">
+			<Grid>
+				<Ellipse x:Name="backgroundElement" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding Foreground}" />
+				<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+			</Grid>
+		</ControlTemplate>
+	</Window.Resources>
+```
+
+위의 example 1 의 경우 https://learn.microsoft.com/ko-kr/dotnet/desktop/wpf/controls/how-to-create-apply-template?view=netdesktop-6.0 의 예제와 동일하게 작성되었다.
+
+하지만, 보다 세부적으로 Avalonia 에서 사용하는 방식과는 좀 차이가 있는 것 같다. 따라서, Avalonia 에서 사용하는 패턴을 파악하자.
+WPF 에 없는 Style 과 연동해서 하는 패턴을 파악한다.
+
+위의 코드를 아래와 같은 패턴으로 작성하면 더 좋지 않을까?
+
+테스트 해보자.
+
+```
+<Window.Styles>
+	<Style Selector="roundControl:pointerover">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Grid>
+						<Ellipse x:Name="backgroundElement" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding Foreground}" />
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Fill" Value="Red" />
+	 </Style>
+		
+</Window.Styles>
+```
+
+```
+<UserControl.Styles>
+        <Style Selector="HeaderedContentControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="HeaderCol" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Content="{TemplateBinding Header}" 
+                                              Grid.Column="0" 
+                                              VerticalAlignment="Center" />
+                            <ContentPresenter Content="{TemplateBinding Content}" 
+                                              Grid.Column="1" 
+                                              VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+```
+
+-> 
+ControlTemplate 과 TargetType 의 경우는 WPF 와 동일하다.
+
+### TODO
+
+#### 해결
+
+```
+ xmlns:local="clr-namespace:calebUI"
+
+<local:BaseConnection/>
+```
+axaml 에 적용할때 문제가 발생한다.
+class 문제인지 아니면 잘못처리해서 하는지 파악해야 한다.
+
+-> avalonia sample 참고하자. 구글링이 안되어서 일단 이건 추후에 진행한다.
+
+https://sourcegraph.com/github.com/AvaloniaUI/Avalonia/-/blob/samples/MobileSandbox/MainWindow.xaml?L11
+
+nodify 로도 테스트 해보자.
+
+해당 문제 해결
+Unable to find a setter that allows multiple assignments to the property Content of type Avalonia.Controls:Avalonia.Controls.ContentControl 
+
+-> that one says you are putting too many children in a control that can only have one
+
+
+#### 미해결
+
+WPF 에서 아래 코드 대응 되는 avaloniaUI 찾기.
+[TemplatePart(Name = ElementConnector, Type = typeof(FrameworkElement))]
+
+일단 먼저, WPf 에서 TemplatePart 부분
+https://learn.microsoft.com/ko-kr/dotnet/desktop/wpf/controls/creating-a-control-that-has-a-customizable-appearance?view=netframeworkdesktop-4.8
+
+https://kaki104.tistory.com/473
+
+대략적으로 빠르게 이해했음.
+
+avaloniaUI 에서도 구현 되었음을 확인함.
+https://github.com/AvaloniaUI/Avalonia/issues/7432
+
+[중요!!]event handler 부분 차이점을 파악하고 해결해야함.
 
 
 
