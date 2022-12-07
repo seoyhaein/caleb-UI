@@ -241,7 +241,7 @@ WPF 에 없는 Style 과 연동해서 하는 패턴을 파악한다.
     </UserControl.Styles>
 ```
 
-테스트 필요
+테스트 필요 Avalonia 에서 예제를 좀더 찾아보고 파악하자.
 ```
 <Window.Styles>
 		<Style Selector="Ellipse#backgroundElement:pointerover">
