@@ -269,6 +269,72 @@ WPF 에 없는 Style 과 연동해서 하는 패턴을 파악한다.
 -> 
 ControlTemplate 과 TargetType 의 경우는 WPF 와 동일하다.
 
+참고용 추후 지울듯
+
+https://gitter.im/AvaloniaUI/Avalonia?at=5d691697b156cd5e75ad59da
+
+```
+ <ControlTheme x:Key="NavigationButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="MinHeight" Value="0" />
+    <Setter Property="Height" Value="{StaticResource NavigationItemHeight}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Padding" Value="12,0,4,0" />
+    <Setter Property="Margin" Value="4,0,8,0" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Name="PART_ContentPresenter"
+                          Padding="{TemplateBinding Padding}"
+                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                          Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          Content="{TemplateBinding Content}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          CornerRadius="{TemplateBinding CornerRadius}"
+                          TextElement.FontFamily="{TemplateBinding FontFamily}"
+                          TextElement.FontSize="{TemplateBinding FontSize}"
+                          TextElement.FontWeight="{TemplateBinding FontWeight}" />
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:pointerover /template/ ContentPresenter">
+      <Setter Property="Border.Background" Value="{DynamicResource SystemChromeLowColor}" />
+      <Setter Property="Border.BoxShadow" Value="{StaticResource NavigationItemShadow}" />
+      <Setter Property="TextElement.Foreground" Value="{DynamicResource TabItemHeaderForegroundUnselectedPointerOver}" />
+    </Style>
+  </ControlTheme>
+```
+
+ Selector="^ 의 경우 nested selector 이며 11.0.0-preview4 에서는 확인 되지만, 0.10.18 에서는 확인 되지 않는다.
+
+ (TODO) 버전에 따라서 avalonia 소스를 다운로드 받아서 확인해봐야 한다. 
+
+ 
+ 동작하지 않는 코드 01
+ ```
+ <Style Selector="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Grid>
+							<Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding Foreground}" />
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+ ```
+
 ### TODO
 
 #### 해결
@@ -295,6 +361,7 @@ Unable to find a setter that allows multiple assignments to the property Content
 
 #### 미해결
 
+1.
 WPF 에서 아래 코드 대응 되는 avaloniaUI 찾기.
 [TemplatePart(Name = ElementConnector, Type = typeof(FrameworkElement))]
 
@@ -309,6 +376,8 @@ avaloniaUI 에서도 구현 되었음을 확인함.
 https://github.com/AvaloniaUI/Avalonia/issues/7432
 
 [중요!!]event handler 부분 차이점을 파악하고 해결해야함.
+
+2. vs 2022 에서 avalonia 버전 확인 하는 방법 찾기
 
 
 
