@@ -335,6 +335,46 @@ https://gitter.im/AvaloniaUI/Avalonia?at=5d691697b156cd5e75ad59da
 		</Style>
  ```
 
+ 문제를 해결했음. (수정할 필요 있음.)
+ 두가지 방식이 있는데 두가지 방식에 대한 부분을 정리를 해야함.
+
+ WPF 방식처럼 Resource 에 넣어서  Template="{StaticResource roundbutton}"  등의 방식으로 바인딩 시켜서 사용하는 방법이 있고, style 방식으로 아래와 같이 사용하는 방식이 있다.
+ 이것을 좀더 완성된 방식을 사용해서 사용하는 방식을 좀더 정리해서 작성해서 넣어둔다.
+
+
+ ```
+ <Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="AvaloniaCTTester.MainWindow"
+		Height="450" Width="800"
+        Title="AvaloniaCTTester">
+	<!--버전에 따라서 확인 해보는 과정이 필요하다.-->
+	<Window.Styles>
+		<Style Selector="Button">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Grid>
+						<Ellipse x:Name="backgroundElement" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding Foreground}" />
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+					</Grid>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+		<Style Selector="Button:pointerover /template/ Ellipse">
+			<Setter Property="Fill" Value="Red"/>
+		</Style>
+	</Window.Styles>
+	<StackPanel Margin="10">
+		<Label>width, height 가 설정되지 않아서 나타나지 않음.</Label>
+		<Button>Button 1</Button>
+		<Label>Rounded Button</Label>
+		<Button x:Name="roundControl" Width="100" Height="100">Button 2</Button>
+	</StackPanel>
+</Window>
+ ```
 ### TODO
 
 #### 해결
