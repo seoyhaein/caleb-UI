@@ -23,6 +23,8 @@ avalonia 에 대해서 별도의 조사가 필요하다.
 https://docs.avaloniaui.net/docs/templates/data-templates
 
 #### TODO
+0. Template 클래스 찾아보자. 
+
 1. 링크에서 설명된 코드를 wpf 로 작성하고 비교한다.
 
 2. avalonia 에서는 DataTrigger 가 없다. 어떻게 처리할지 고민한다.
